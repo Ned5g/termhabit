@@ -28,5 +28,9 @@ func MakeStyles(cfg *storage.Config) map[string]lipgloss.Style {
 
 		"input": lipgloss.NewStyle().
 			Foreground(lipgloss.Color(cfg.Styles.Input)),
+		"border": lipgloss.NewStyle().
+			Border(lipgloss.NormalBorder()).
+			BorderForeground(lipgloss.Color(cfg.Styles.Border)).
+			Padding(1, 2),
 	}
 }

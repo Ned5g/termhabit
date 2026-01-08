@@ -20,6 +20,7 @@ type StyleConfig struct {
 	Done   string `toml:"done"`
 	Help   string `toml:"help"`
 	Input  string `toml:"input"`
+	Border string `toml:"border"`
 }
 
 var cfgDefault = Config{
@@ -31,6 +32,7 @@ var cfgDefault = Config{
 		Done:   "204",
 		Help:   "204",
 		Input:  "204",
+		Border: "63",
 	},
 }
 

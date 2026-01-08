@@ -35,5 +35,5 @@ func (m Model) View() string {
 		s += styles["input"].Render("New Habit: " + m.Input)
 	}
 
-	return s
+	return styles["border"].Render(s)
 }
