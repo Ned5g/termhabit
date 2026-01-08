@@ -1,6 +1,8 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"log"
 
 	tui "github.com/Ned5g/termhabit/internal/tui"
@@ -11,6 +13,14 @@ import (
 const appName = "termhabit"
 
 func main() {
+	showVersion := flag.Bool("version", false, "Show the version")
+	flag.Parse()
+
+	if *showVersion {
+		fmt.Println(storage.Version)
+		return
+	}
+
 	cfg, err := storage.LoadConfig(appName)
 	if err != nil {
 		log.Printf("failed to load config file: %v", err)
