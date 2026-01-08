@@ -16,7 +16,7 @@ func main() {
 		log.Printf("failed to load config file: %v", err)
 	}
 
-	p := tea.NewProgram(tui.InitialModel(appName, cfg))
+	p := tea.NewProgram(tui.InitialModel(appName, cfg), tea.WithAltScreen())
 	_, err = p.Run()
 	if err != nil {
 		log.Printf("failed to run termhabit: ", err)
