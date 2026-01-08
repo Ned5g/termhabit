@@ -102,5 +102,5 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m *Model) save() {
 	m.Habits.LastUpdated = time.Now().Format(time.RFC3339)
-	storage.WriteHabitFile("TermHabit", m.Habits)
+	storage.WriteHabitFile("termhabit", m.Habits)
 }
