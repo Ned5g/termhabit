@@ -19,12 +19,23 @@ type HabitData struct {
 
 func InitHabitFile(appName string) string {
 	dataDir := filepath.Join(os.Getenv("HOME"), ".local", "share", appName)
-	err := os.MkdirAll(dataDir, 0o755)
-	if err != nil {
-		fmt.Printf("failed to create dir: %v", err)
+	if err := os.MkdirAll(dataDir, 0o755); err != nil {
+		panic(err)
 	}
 
-	return filepath.Join(dataDir, "habits.json")
+	file := filepath.Join(dataDir, "habits.json")
+
+	if _, err := os.Stat(file); os.IsNotExist(err) {
+		defaultData := HabitData{
+			Habits:      []Habit{},
+			LastUpdated: "",
+		}
+
+		b, _ := json.MarshalIndent(defaultData, "", " ")
+		_ = os.WriteFile(file, b, 0o644)
+	}
+
+	return file
 }
 
 func ReadHabitFile(appName string) HabitData {
@@ -32,22 +43,35 @@ func ReadHabitFile(appName string) HabitData {
 
 	op, err := os.ReadFile(file)
 	if err != nil {
-		fmt.Printf("Failed to read habit file: %v", err)
+		InitHabitFile(appName)
 	}
 
 	var habitStr HabitData
 
 	err = json.Unmarshal(op, &habitStr)
 	if err != nil {
-		fmt.Printf("failed to unmarshal habit file: %v", err)
+		fmt.Printf("Failed to unmarshal habit file: %v", err)
 	}
 
 	return habitStr
 }
 
-func WriteHabitFile(appName string, data HabitData) {
-	file := filepath.Join(os.Getenv("HOME"), ".local", "share", appName, "habits.json")
+func WriteHabitFile(appName string, data HabitData) error {
+	dataDir := filepath.Join(os.Getenv("HOME"), ".local", "share", appName)
+	if err := os.MkdirAll(dataDir, 0o755); err != nil {
+		return fmt.Errorf("failed to create data dir: %w", err)
+	}
 
-	b, _ := json.MarshalIndent(data, "", " ")
-	_ = os.WriteFile(file, b, 0o644)
+	file := filepath.Join(dataDir, "habits.json")
+
+	b, err := json.MarshalIndent(data, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to marshal habit data: %w", err)
+	}
+
+	if err := os.WriteFile(file, b, 0o644); err != nil {
+		return fmt.Errorf("failed to write habit file: %w", err)
+	}
+
+	return nil
 }

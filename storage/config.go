@@ -23,7 +23,7 @@ type StyleConfig struct {
 }
 
 var cfgDefault = Config{
-	AppName: "TermHabit",
+	AppName: "termhabit",
 	Styles: StyleConfig{
 		Title:  "204",
 		Cursor: "204",
