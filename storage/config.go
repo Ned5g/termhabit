@@ -14,25 +14,29 @@ type Config struct {
 }
 
 type StyleConfig struct {
-	Title  string `toml:"title"`
-	Cursor string `toml:"cursor"`
-	Habit  string `toml:"habit"`
-	Done   string `toml:"done"`
-	Help   string `toml:"help"`
-	Input  string `toml:"input"`
-	Border string `toml:"border"`
+	Title        string `toml:"title"`
+	Cursor       string `toml:"cursor"`
+	Habit        string `toml:"habit"`
+	Done         string `toml:"done"`
+	Help         string `toml:"help"`
+	Input        string `toml:"input"`
+	Border       string `toml:"border"`
+	Completed    string `toml:"completed"`
+	NotCompleted string `toml:"not_completed"`
 }
 
 var cfgDefault = Config{
 	AppName: "termhabit",
 	Styles: StyleConfig{
-		Title:  "204",
-		Cursor: "204",
-		Habit:  "204",
-		Done:   "204",
-		Help:   "204",
-		Input:  "204",
-		Border: "63",
+		Title:        "204",
+		Cursor:       "204",
+		Habit:        "204",
+		Done:         "204",
+		Help:         "204",
+		Input:        "204",
+		Border:       "63",
+		Completed:    "\u2713",
+		NotCompleted: "\u0078",
 	},
 }
 

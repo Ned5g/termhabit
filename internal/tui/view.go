@@ -1,6 +1,10 @@
 package tui
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/Ned5g/termhabit/internal/utils"
+)
 
 func (m Model) View() string {
 	styles := MakeStyles(m.Cfg)
@@ -13,11 +17,11 @@ func (m Model) View() string {
 			cursor = styles["cursor"].Render(">")
 		}
 
-		check := "\u0078"
+		check := utils.ConvertUnicodeString(m.Cfg.Styles.NotCompleted)
 		name := h.Name
 
 		if h.Done {
-			check = "\u2713"
+			check = utils.ConvertUnicodeString(m.Cfg.Styles.Completed)
 			name = styles["done"].Render(h.Name)
 		} else {
 			name = styles["name"].Render(h.Name)
