@@ -1,0 +1,24 @@
+* TODO
+** Habits
+   - (x) Adding habits
+   - (-) Reset habit daily  
+   - (-) Adding habits grouping 
+   - (-) Adding habit fuzy finder
+   - (-) Making stats out of habits
+   - (-) New Habit plans list
+   - (-) Habit description 
+   - (-) Making not daily Habits like 3day fexample
+   - (-) Sub habits
+
+** Todo
+   - (-) Adding todo
+   - (-) Completed Todos
+
+** DB
+   - (-) using Sqlite instead of JSON
+
+** Args
+   - (-) CLI use with args
+
+** Config
+   - (x) Config with toml file
