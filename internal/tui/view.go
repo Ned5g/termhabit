@@ -13,11 +13,11 @@ func (m Model) View() string {
 			cursor = styles["cursor"].Render(">")
 		}
 
-		check := "[ ]"
+		check := "\u0078"
 		name := h.Name
 
 		if h.Done {
-			check = "[x]"
+			check = "\u2713"
 			name = styles["done"].Render(h.Name)
 		} else {
 			name = styles["name"].Render(h.Name)
